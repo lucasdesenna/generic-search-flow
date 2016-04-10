@@ -3,19 +3,21 @@
  * This example is not perfect.
  * Test should check if MomentJS have been called
  */
-describe('directive navbar', function() {
+describe('directive searchbar', function() {
   let vm;
+  let serviceUrl;
+  let param;
+  let retracted;
   let element;
-  let timeInMs;
 
-  beforeEach(angular.mock.module('iCasei'));
+  beforeEach(angular.mock.module('generic-search-flow'));
 
   beforeEach(inject(($compile, $rootScope) => {
-    const currentDate = new Date();
-    timeInMs = currentDate.setHours(currentDate.getHours() - 24);
-
+    serviceUrl = vm.serviceUrl;
+    param = vm.param;
+    retracted = vm.retracted;
     element = angular.element(`
-      <acme-navbar creation-date="${timeInMs}"></acme-navbar>
+      <acme-searchbar" service-url="${serviceUrl}" param="${param}" retracted="${retracted || true}"></searchbar>
     `);
 
     $compile(element)($rootScope.$new());
@@ -30,10 +32,10 @@ describe('directive navbar', function() {
   it('should have isolate scope object with instanciate members', () => {
     expect(vm).toEqual(jasmine.any(Object));
 
-    expect(vm.creationDate).toEqual(jasmine.any(Number));
-    expect(vm.creationDate).toEqual(timeInMs);
+    expect(vm.serviceUrl).toEqual(jasmine.any(String));
 
-    expect(vm.relativeDate).toEqual(jasmine.any(String));
-    expect(vm.relativeDate).toEqual('a day ago');
+    expect(vm.param).toEqual(jasmine.any(String));
+
+    expect(vm.retracted).toEqual(jasmine.any(Boolean));
   });
 });

@@ -5,20 +5,16 @@ import { routerConfig } from './index.route';
 import { themeConfig } from './index.theme';
 import { runBlock } from './index.run';
 import { MainController } from './main/main.controller';
-import { GithubContributorService } from '../app/components/githubContributor/githubContributor.service';
-import { WebDevTecService } from '../app/components/webDevTec/webDevTec.service';
-import { SearchbarDirective } from '../app/components/searchbar/searchbar.directive';
-import { MalarkeyDirective } from '../app/components/malarkey/malarkey.directive';
+import { DetailsController } from './details/details.controller';
+import { RetractableSearchbarDirective } from '../app/components/retractableSearchbar/retractableSearchbar.directive';
 
-angular.module('generic-search-flow', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngAria', 'ngResource', 'ngRoute', 'ngMaterial', 'toastr'])
+angular.module('generic-search-flow', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngAria', 'ngResource', 'ngRoute', 'ngMaterial', 'toastr', 'infinite-scroll'])
   .constant('malarkey', malarkey)
   .constant('moment', moment)
   .config(config)
   .config(routerConfig)
   .config(themeConfig)
   .run(runBlock)
-  .service('githubContributor', GithubContributorService)
-  .service('webDevTec', WebDevTecService)
   .controller('MainController', MainController)
-  .directive('acmeSearchbar', SearchbarDirective)
-  .directive('acmeMalarkey', MalarkeyDirective);
+  .controller('DetailsController', DetailsController)
+  .directive('retractableSearchbar', RetractableSearchbarDirective)

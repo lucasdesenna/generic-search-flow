@@ -1,1 +1,52 @@
-acme-searchbar(service-url="http://www.omdbapi.com/" param="s" retracted="false")
+retractable-searchbar.fixed(retracted='{{searchbarRetracted}}' search-text='searchText' on-submit='getMovies')
+div.movie-list(ng-if='thereAreMovies()' layout='column' layout-gt-sm='row' ng-cloak)
+  div.movie-list-nav(hide show-gt-sm flex-gt-sm='25' layout='column' layout-align='center center')
+    md-button.md-raised(ng-if='page > 1' ng-click='getPreviousMovies()')
+      i.material-icons &#xE408;
+  div(flex-gt-sm='50' layout='column')
+    md-subheader.md-no-sticky(hide show-gt-sm) Página {{page}} de {{totalPageCount()}} - {{movieCount}} resultados encontrados.
+    md-grid-list(
+      md-cols='1' 
+      md-cols-gt-sm='3'
+      md-row-height='3:4' 
+      md-gutter='8px'
+      md-gutter-gt-sm='16px'
+      layout-align='center center'
+    )
+      md-grid-tile.movie-list-tile(ng-repeat='movie in moviesToDisplay')
+        div.movie-list-tile-tooltip
+          dl
+            dt Título:
+            dd {{movie.Title}}
+            br
+            dt Ano:
+            dd {{movie.Year}}
+            br
+            dt Tipo:
+            dd {{movie.Type}}
+            br
+            dt imdbID:
+            dd {{movie.imdbID}}
+            br
+          md-button.md-raised.md-primary(href='#/moreinfo?id={{movie.imdbID}}&s={{searchText}}' aria-label='Mais Informações') + Info
+        div.movie-list-tile-poster(ng-if='hasPoster(movie)' style='background-image: url("{{movie.Poster}}")')
+        div.movie-list-tile-no-poster(ng-if='!hasPoster(movie)' layout='column' layout-align='center center')
+          i.material-icons &#xE8DA;
+          h4.md-title {{movie.Title}}
+  div.movie-list-nav(hide show-gt-sm flex-gt-sm='25' layout='column' layout-align='center center')
+    md-button.md-raised(ng-if='thereAreMoreMovies()' ng-click='getNextMovies()')
+      i.material-icons &#xE409;
+
+  div.floating-nav(hide-gt-sm layout='row' layout-align='center center')
+    div.movie-list-nav(flex='20' layout-align='center center')
+      md-button.md-raised(ng-disabled='page <= 1' ng-click='getPreviousMovies()')
+        i.material-icons &#xE408;
+    div.page-counter(flex='60' layout-align='center center') 
+      span.md-body-1 Página {{page}} de {{totalPageCount()}}
+    div.movie-list-nav(flex='20' layout-align='center center')
+      md-button.md-raised(ng-disabled='!thereAreMoreMovies()' ng-click='getNextMovies()')
+        i.material-icons &#xE409;
+
+div.movie-list-no-movies(ng-if='loadingMovies || !thereAreMovies() && !loadingMovies' layout-fill layout='column' layout-align='center center')
+  md-progress-circular(ng-if='loadingMovies' md-mode='indeterminate')
+  h3.md-headline(ng-if='!thereAreMovies() && !loadingMovies') Desculpe, mas não encontramos resultados para a sua busca.

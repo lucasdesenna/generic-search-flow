@@ -3,21 +3,21 @@
  * This example is not perfect.
  * Test should check if MomentJS have been called
  */
-describe('directive searchbar', function() {
+describe('directive retractableSearchbar', function() {
   let vm;
-  let serviceUrl;
-  let param;
   let retracted;
+  let searchText;
+  let onSubmit;
   let element;
 
   beforeEach(angular.mock.module('generic-search-flow'));
 
   beforeEach(inject(($compile, $rootScope) => {
-    serviceUrl = vm.serviceUrl;
-    param = vm.param;
     retracted = vm.retracted;
+    searchText = vm.searchText;
+    onSubmit = vm.onSubmit;
     element = angular.element(`
-      <acme-searchbar" service-url="${serviceUrl}" param="${param}" retracted="${retracted || true}"></searchbar>
+      <retractable-searchbar" retracted="${retracted || true}" search-text="${searchText}" on-submit="${onSubmit}"></retractable-searchbar>
     `);
 
     $compile(element)($rootScope.$new());
@@ -32,10 +32,10 @@ describe('directive searchbar', function() {
   it('should have isolate scope object with instanciate members', () => {
     expect(vm).toEqual(jasmine.any(Object));
 
-    expect(vm.serviceUrl).toEqual(jasmine.any(String));
-
-    expect(vm.param).toEqual(jasmine.any(String));
-
     expect(vm.retracted).toEqual(jasmine.any(Boolean));
+
+    expect(vm.searchText).toEqual(jasmine.any(Object));
+    
+    expect(vm.onSubmit).toEqual(jasmine.any(Function));
   });
 });

@@ -1,0 +1,24 @@
+form.retractable-searchbar-search-form(name='movieSearchForm' layout='row' layout-wrap flex='grow' flex-gt-sm='initial' layout-align='center center' ng-class='{retracted: vm.retracted}' ng-submit='$event.preventDefault()' autocomplete='off')
+  md-whiteframe.retractable-searchbar-search-field.md-whiteframe-z1(layout='row')
+    input.retractable-searchbar-search-field-input(
+      type='search'
+      md-input-name='movieSearch'
+      ng-model='vm.searchText'
+      ng-click='vm.selectInputText(this)'
+      ng-focus='vm.searchFieldHasFocus = true'
+      ng-blur='vm.searchFieldHasFocus = false'
+      ng-keyup='vm.submitOnKeyup($event, 13)'
+      placeholder='Procure seu filme'
+      required
+    )
+    md-button.retractable-searchbar-search-field-clear(tabindex='-1' ng-if='vm.searchText' ng-click='vm.clear()')
+      md-icon(md-svg-icon='md-close' aria-hidden='true')
+        svg(version='1.1' x='0px' y='0px' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg' fit='' height='100%' width='100%' preserveAspectRatio='xMidYMid meet' focusable='false')
+          g
+            path(d='M19 6.41l-1.41-1.41-5.59 5.59-5.59-5.59-1.41 1.41 5.59 5.59-5.59 5.59 1.41 1.41 5.59-5.59 5.59 5.59 1.41-1.41-5.59-5.59z')
+      span.md-visually-hidden Limpar
+  md-button.retractable-searchbar-submit-button.md-raised.md-primary(
+    aria-label='Buscar'
+    flex-order='2'
+    ng-click='vm.submit()'
+  ) Buscar

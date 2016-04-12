@@ -1,0 +1,14 @@
+div.md-toolbar-tools(layout-align='start center')
+  md-button.go-back(href='#/?s={{searchText}}' aria-label='Voltar') 
+    i.material-icons &#xE5CB;
+    span Voltar
+  h2 Detalhes
+md-content
+  div.list-header(layout='column' layout-align='center center')
+    h2.md-headline {{movieDetails.Title}}
+    img.poster(ng-if='hasPoster()' src='{{moviePoster}}')
+  md-list(flex)
+    md-list-item.md-3-line(ng-repeat='(key,val) in movieDetails')
+      div.md-list-item-text(layout='column')
+        p {{key}}
+        h3 {{val}}

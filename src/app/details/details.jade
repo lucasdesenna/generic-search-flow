@@ -3,8 +3,8 @@ div.md-toolbar-tools(layout-align='start center')
     i.material-icons &#xE5CB;
     span Voltar
   h2 Detalhes
-md-content.details-body
-  div.list-header(layout='column' layout-align='center center')
+md-content.details-body(layout='column' layout-align='center center')
+  div.list-header(ng-if='movieDetails' layout='column' layout-align='center center')
     h2.md-headline {{movieDetails.Title}}
     i.material-icons(ng-if='!hasPoster()') &#xE8DA;
     img.poster(ng-if='hasPoster()' src='{{moviePoster}}')
@@ -13,3 +13,4 @@ md-content.details-body
       div.md-list-item-text(layout='column')
         p {{key}}
         h3 {{val}}
+  md-progress-circular(ng-if='!movieDetails' md-mode='indeterminate')

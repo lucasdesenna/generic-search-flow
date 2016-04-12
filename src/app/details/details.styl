@@ -1,20 +1,31 @@
 .md-toolbar-tools
-   background #FFC107
+  position fixed
+  top 0
+  width 100%
+  background #FFC107
+  z-index 20
    
 .go-back
   i
     position: relative;
     top: 6px;
+    
+.details-body
+    padding-top 56px
 
-.list-header
-  padding-top 8px
-  padding-bottom 8px
-  background #DDD
-  
-md-list-item.md-3-line .md-list-item-text h3
-  overflow: auto !important
-  white-space: normal !important
+  .list-header
+    padding-top 8px
+    padding-bottom 8px
+    background #DDD
+    
+    i
+      font-size 6em
+      margin-bottom 0.25em
+    
+  md-list-item.md-3-line .md-list-item-text h3
+    overflow: auto !important
+    white-space: normal !important
 
-.poster
-  max-height 50%
-  padding-bottom 32px
+  .poster
+    max-height 50%
+    padding-bottom 32px

@@ -1,0 +1,146 @@
+retractable-searchbar
+  display flex
+  width 100%
+  height 100%
+  max-width 100%
+  min-height 64px
+  padding 8px 16px
+  margin 0
+  z-index 20
+  flex-direction column
+  align-content center
+  align-items center
+  justify-content center
+  background #FFC107
+  box-sizing border-box;
+  transition all 0.6s;
+  
+  &.retracted
+    flex-direction row
+    min-height auto
+    height 64px
+    
+.retractable-searchbar-search-form
+  width 100%
+  
+  &.retracted
+    
+    .retractable-searchbar-search-field
+      width 66%
+
+    .retractable-searchbar-submit-button
+      width auto
+      
+.retractable-searchbar-search-field
+  position relative
+  width 100%
+  min-width 66%
+  border-radius 2px
+  margin 8px 5px
+  background #FAFAFA
+  transition all 0.1s
+  
+  &.shake
+    animation shake 0.82s cubic-bezier(.36,.07,.19,.97) both
+    
+.retractable-searchbar-search-field-input
+  font-size 14px
+  box-sizing border-box
+  border none
+  box-shadow none
+  outline none
+  background transparent
+  width 100%
+  padding 0 15px
+  line-height 40px
+  height 40px
+      
+.retractable-searchbar-search-field-clear
+  position relative
+  line-height 20px
+  text-align center
+  min-width 0
+  width 48px
+  height 30px
+  padding 0
+  border none
+  border-radius 50%
+  font-size 12px
+  cursor pointer
+  background transparent
+  margin auto 5px
+  
+.retractable-searchbar-submit-button
+  width 100%
+  margin-left 5px
+  margin-right 5px
+  transition all 0.1s
+  
+@keyframes shake
+  10%, 90%
+    transform translate(-1px, 0)
+  
+  20%, 80%
+    transform translate(2px, 0)
+
+  30%, 50%, 70%
+    transform translate(-4px, 0)
+
+  40%, 60%
+    transform translate(4px, 0)
+    
+@keyframes retract
+  from
+    height 100%
+  
+  to
+    height 64px
+    
+@keyframes retract-non-mobile
+  from
+    height 100%
+    justify-content center
+  
+  to
+    height 64px
+    justify-content flex-start
+    
+@keyframes fade-in
+  from
+    opacity 0
+    
+  to
+    opacity 1
+    
+@keyframes fade-out
+  from
+    opacity 1
+    
+  to
+    opacity 0
+    
+@keyframes fade-bounce
+  0%
+    opacity 1
+    
+  30%
+    opacity 0
+    
+  70%
+    opacity 0
+    
+  100%
+    opacity 1
+    
+    
+@media (min-width 960px) 
+  .retractable-searchbar-search-form
+    width 50%
+
+  .retractable-searchbar-search-field, .retractable-searchbar-submit-button
+    width initial
+    min-width initial
+    
+  .retractable-searchbar-search-form.retracted
+    .retractable-searchbar-search-field
+      width initial

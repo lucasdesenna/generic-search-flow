@@ -3,7 +3,8 @@ export class MainController {
     'ngInject';
 
     var self = $scope;
-   
+
+    angular.element('div[ng-view]').addClass('scroll-locked');
     self.serviceUrl = 'http://www.omdbapi.com/';
     self.servicePage;
     self.callingServer = false;
@@ -164,7 +165,7 @@ export class MainController {
 
     if(angular.isString(self.searchText) && self.searchText.length > 0) {
       self.searchbarRetracted = true;
-      self.getMovies(self.searchText);
+      self.getNewMovieList();
     } else {
       self.searchbarRetracted = false;
     }

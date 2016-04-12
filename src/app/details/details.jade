@@ -1,14 +1,20 @@
-div.md-toolbar-tools(layout-align='start center')
+div.md-toolbar-tools(hide show-gt-sm layout-align='center center')
+  div.wrapper(layout='columns' layout-align='start center')
+    md-button.go-back(href='#/?s={{searchText}}' aria-label='Voltar') 
+      i.material-icons &#xE5CB;
+      span Voltar
+    h2 Detalhes
+div.md-toolbar-tools(hide-gt-sm layout-align='start center')
   md-button.go-back(href='#/?s={{searchText}}' aria-label='Voltar') 
     i.material-icons &#xE5CB;
     span Voltar
   h2 Detalhes
-md-content.details-body(layout='column' layout-align='center center')
+md-content.details-body(layout='column' layout-align='center center' ng-cloak)
   div.list-header(ng-if='movieDetails' layout='column' layout-align='center center')
     h2.md-headline {{movieDetails.Title}}
     i.material-icons(ng-if='!hasPoster()') &#xE8DA;
     img.poster(ng-if='hasPoster()' src='{{moviePoster}}')
-  md-list(flex)
+  md-list.wrapper(flex)
     md-list-item.md-3-line(ng-repeat='(key,val) in movieDetails')
       div.md-list-item-text(layout='column')
         p {{key}}

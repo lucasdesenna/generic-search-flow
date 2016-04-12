@@ -14,7 +14,7 @@ md-content.details-body(layout='column' layout-align='center center' ng-cloak)
     h2.md-headline {{movieDetails.Title}}
     i.material-icons(ng-if='!hasPoster()') &#xE8DA;
     img.poster(ng-if='hasPoster()' src='{{moviePoster}}')
-  md-list.wrapper(flex)
+  md-list.wrapper(ng-if='movieDetails' flex)
     md-list-item.md-3-line(ng-repeat='(key,val) in movieDetails')
       div.md-list-item-text(layout='column')
         p {{key}}
